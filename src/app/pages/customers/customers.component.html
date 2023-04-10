@@ -1,0 +1,30 @@
+<h1 class="display-6">Clientes</h1>
+<hr>
+<a routerLink="/customers/create" class="btn btn-success mt-3">Cadastrar</a>
+<table class="table table-bordered mt-3">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">CPF</th>
+      <th scope="col">Telefone</th>
+      <th scope="col">Rendimento mensal</th>
+      <th scope="col">Endereço</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <th scope="row">{{customer.id}}</th>
+      <td>{{customer.name}}</td>
+      <td>{{customer.documentNumber}}</td>
+      <td>{{customer.phoneNumber}}</td>
+      <td>{{customer.monthlyIncome | currency: 'BRL'}}</td>
+      <td>{{customer.address.street}},{{customer.address.number}} - {{customer.address.zipCode}} </td>
+      <td>
+        <a routerLink="/customers/update/{{customer.documentNumber}}" class="btn btn-primary btn-sm">Editar</a>
+        <button type="button" class="btn btn-danger ms-1 btn-sm" (click)="deleteCustomer(customer.documentNumber)">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

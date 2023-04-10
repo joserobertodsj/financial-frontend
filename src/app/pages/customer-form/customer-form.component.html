@@ -1,0 +1,54 @@
+<h1 class="display-6" [textContent]="isNewCustomer ? 'Cadastrar' : 'Editar'"></h1>
+<hr>
+<div class="container-fluid">
+  <form [formGroup]="customerForm" (ngSubmit)="isNewCustomer ? createCustomer() : updateCustomer()">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-3">
+          <label for="título" class="form-label">Nome</label>
+          <input id="título" type="text" class="form-control" formControlName="name">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="ano" class="form-label">CPF</label>
+          <input id="ano" type="text" class="form-control" formControlName="documentNumber" [readOnly]="!isNewCustomer">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="valorUnitario" class="form-label">Número de telefone</label>
+          <input id="valorUnitario" type="tel" class="form-control" formControlName="phoneNumber">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="monthlyIncome" class="form-label">Rendimento mensal</label>
+          <input id="monthlyIncome" type="number" class="form-control" formControlName="monthlyIncome">
+        </div>
+      </div>
+    </div>
+    <div formGroupName="address" class="row">
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="street" class="form-label">Endereço</label>
+          <input type="text" id="street" formControlName="street" class="form-control">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="number" class="form-label">Número</label>
+          <input type="number" id="number" formControlName="number" class="form-control">
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="zipCode" class="form-label">CEP</label>
+          <input type="text" id="zipCode" formControlName="zipCode" class="form-control">
+        </div>
+      </div>
+   </div>
+    <button type="submit" [disabled]="!customerForm.valid" class="btn btn-success">{{ isNewCustomer ? 'Cadastrar' : 'Editar'}}</button>
+  </form>
+</div>
+
